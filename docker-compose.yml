@@ -1,0 +1,28 @@
+  version: '3'
+    
+  services:
+    ctf:
+      build: .
+      command: 
+        - sh 
+        - -c
+        - |
+            xpra start --start=gnome-terminal --bind-tcp=0.0.0.0:14500
+            tail -f /dev/null
+      environment:
+        - REDIS_HOST=redis
+      ports:
+        - "18022:18022"
+        - "23946:23946"
+        - "23947:23947"
+        - "10088:10088"
+        - "4000:4000"
+        - "10000:10000"
+        - "14500:14500"
+      volumes:
+        - ./myfile:/ctf/work
+      cap_add:
+        - SYS_PTRACE
+      privileged: true
+
+

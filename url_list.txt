@@ -1,0 +1,14 @@
+https://ctf-wiki.github.io/ctf-wiki/
+https://firmianay.gitbooks.io/ctf-all-in-one/content/
+https://github.com/swisskyrepo/PayloadsAllTheThings
+
+
+git clone https://github.com/angr/angr.git \
+git clone https://github.com/google/AFL.git \
+wget https://software.intel.com/sites/landingpage/pintool/downloads/pin-3.17-98314-g0c048d619-gcc-linux.tar.gz \
+git clone https://github.com/ctf-wiki/ctf-challenges.git \
+git clone https://github.com/shellphish/how2heap.git \
+git clone https://github.com/scwuaptx/HITCON-Training.git \
+git clone https://github.com/NationalSecurityAgency/ghidra.git \
+git clone https://github.com/geohot/qira.git
+
