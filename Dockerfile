@@ -60,12 +60,13 @@ RUN wget https://github.com/radareorg/radare2/releases/download/4.4.0/radare2_4.
     dpkg -i radare2_4.4.0_amd64.deb && rm radare2_4.4.0_amd64.deb && \ 
     sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" \
 
-RUN wget https://github.com/radareorg/cutter/releases/download/v1.12.0/Cutter-v1.12.0-x64.Linux.AppImage && \
-    mv Cutter-v1.12.0-x64.Linux.AppImage Cutter && \
-    chmod +x Cutter
+# RUN wget https://github.com/radareorg/cutter/releases/download/v1.12.0/Cutter-v1.12.0-x64.Linux.AppImage && \
+    # mv Cutter-v1.12.0-x64.Linux.AppImage Cutter && \
+    # chmod +x Cutter
 
-RUN wget https://software.intel.com/sites/landingpage/pintool/downloads/pin-3.17-98314-g0c048d619-gcc-linux.tar.gz && \
-    tar -zxvf pin-3.17-98314-g0c048d619-gcc-linux.tar.gz
+# RUN wget https://software.intel.com/sites/landingpage/pintool/downloads/pin-3.17-98314-g0c048d619-gcc-linux.tar.gz && \
+    # tar -zxvf pin-3.17-98314-g0c048d619-gcc-linux.tar.gz
+
 
 RUN python3 -m pip install -U pip && \
     python3 -m pip install --no-cache-dir \
@@ -97,32 +98,11 @@ RUN git clone --depth 1 https://github.com/niklasb/libc-database.git libc-databa
 
 WORKDIR /ctf/work/
 
-#COPY --from=skysider/glibc_builder64:2.19 /glibc/2.19/64 /glibc/2.19/64
-#COPY --from=skysider/glibc_builder32:2.19 /glibc/2.19/32 /glibc/2.19/32
-
-#COPY --from=skysider/glibc_builder64:2.23 /glibc/2.23/64 /glibc/2.23/64
-#COPY --from=skysider/glibc_builder32:2.23 /glibc/2.23/32 /glibc/2.23/32
-
-#COPY --from=skysider/glibc_builder64:2.24 /glibc/2.24/64 /glibc/2.24/64
-#COPY --from=skysider/glibc_builder32:2.24 /glibc/2.24/32 /glibc/2.24/32
-
-#COPY --from=skysider/glibc_builder64:2.28 /glibc/2.28/64 /glibc/2.28/64
-#COPY --from=skysider/glibc_builder32:2.28 /glibc/2.28/32 /glibc/2.28/32
-
-#COPY --from=skysider/glibc_builder64:2.29 /glibc/2.29/64 /glibc/2.29/64
-#COPY --from=skysider/glibc_builder32:2.29 /glibc/2.29/32 /glibc/2.29/32
-
-#COPY --from=skysider/glibc_builder64:2.30 /glibc/2.30/64 /glibc/2.30/64
-#COPY --from=skysider/glibc_builder32:2.30 /glibc/2.30/32 /glibc/2.30/32
-
-#COPY --from=skysider/glibc_builder64:2.27 /glibc/2.27/64 /glibc/2.27/64
-#COPY --from=skysider/glibc_builder32:2.27 /glibc/2.27/32 /glibc/2.27/32
-
 COPY ./glibc/ /glibc
 
-COPY linux_server linux_server64 Cutter /ctf/
+COPY linux_server linux_server64 /ctf/
 
-RUN chmod a+x /ctf/linux_server /ctf/linux_server64 Cutter
+RUN chmod a+x /ctf/linux_server /ctf/linux_server64
 
 CMD ["/sbin/my_init"]
 
